@@ -35,6 +35,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     testCompileOnly 'org.projectlombok:lombok'
+
     testAnnotationProcessor 'org.projectlombok:lombok:'
 
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
@@ -42,6 +43,10 @@ dependencies {
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 
     implementation 'org.modelmapper:modelmapper:3.1.0'
+
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
     annotationProcessor(
             "javax.persistence:javax.persistence-api",
