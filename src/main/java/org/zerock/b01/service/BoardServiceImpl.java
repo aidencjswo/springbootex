@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.zerock.b01.domain.Board;
@@ -76,5 +77,11 @@ public class BoardServiceImpl implements BoardService{
                 .dtoList(dtoList)
                 .total((int)result.getTotalElements())
                 .build();
+    }
+
+    @Override
+    public Page<Board> search(int page, int rowsPerPage, String title){
+        PageRequest pageRequest = PageRequest.of(page, rowsPerPage);
+        return boardRepository.findByTitleContaining(title,pageRequest);
     }
 }
