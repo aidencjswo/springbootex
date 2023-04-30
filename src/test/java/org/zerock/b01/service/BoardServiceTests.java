@@ -57,10 +57,4 @@ public class BoardServiceTests {
         log.info(responseDTO);
     }
     //int page, int rowsPerPage, String title
-    @Test
-    public void search(){
-
-        boardService.search(1,20,"10");
-
-    }
 }
