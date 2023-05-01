@@ -1,6 +1,8 @@
 package org.zerock.b01.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +29,9 @@ public class ReplyDTO {
     @NotEmpty
     private String replyer;
 
-    private LocalDateTime regDate, modDate;
+    @JsonFormat(pattern="yyyy-MM-dd  HH:mm:ss")
+    private LocalDateTime regDate;
 
-
+    @JsonIgnore //화면 출력할 일이 없으므로 JSON으로 변환 될 때 제외 하도록 함
+    private LocalDateTime modDate;
 }
