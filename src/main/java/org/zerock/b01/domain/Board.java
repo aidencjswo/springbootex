@@ -2,6 +2,7 @@ package org.zerock.b01.domain;
 
 
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -37,8 +38,10 @@ public class Board extends BaseEntity{
 
     @OneToMany(mappedBy = "board",
             cascade = {CascadeType.ALL},
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
     @Builder.Default
+    @BatchSize(size = 20)
     private Set<BoardImage> imageSet = new HashSet<>();
 
     public void addImage(String uuid,String fileName){
@@ -50,7 +53,7 @@ public class Board extends BaseEntity{
                 .build();
         imageSet.add(boardImage);
     }
-    public void clearImages(){
+    public void clearImages() {
         imageSet.forEach(boardImage -> boardImage.changeBoard(null));
 
         this.imageSet.clear();

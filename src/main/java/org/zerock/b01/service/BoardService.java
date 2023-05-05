@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.zerock.b01.domain.Board;
-import org.zerock.b01.dto.BoardDTO;
-import org.zerock.b01.dto.BoardListReplyCountDTO;
-import org.zerock.b01.dto.PageRequestDTO;
-import org.zerock.b01.dto.PageResponseDTO;
+import org.zerock.b01.dto.*;
 import org.zerock.b01.repository.BoardRepository;
 
 public interface BoardService {
@@ -23,5 +20,5 @@ public interface BoardService {
 
     PageResponseDTO<BoardListReplyCountDTO> listWithReplyCount(PageRequestDTO pageRequestDTO);
 
-
+    PageResponseDTO<BoardListAllDTO>listWithAll(PageRequestDTO pageRequestDTO);
 }
