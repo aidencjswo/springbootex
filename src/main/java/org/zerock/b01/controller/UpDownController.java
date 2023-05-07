@@ -10,10 +10,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.zerock.b01.dto.upload.UploadFileDTO;
 import org.zerock.b01.dto.upload.UploadResultDTO;
 
@@ -77,7 +74,7 @@ public class UpDownController {
         return null;
     }
     @ApiOperation(value = "view 파일", notes = "GET방식으로 첨부파일 조회")
-    @PostMapping("/view/{fileName}")
+    @GetMapping("/view/{fileName}")
     public ResponseEntity<Resource> viewFileGET(@PathVariable String fileName){
         Resource resource = new FileSystemResource(uploadPath+File.separator+fileName);
 

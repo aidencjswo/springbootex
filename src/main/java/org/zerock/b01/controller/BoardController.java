@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.b01.domain.Board;
-import org.zerock.b01.dto.BoardDTO;
-import org.zerock.b01.dto.BoardListReplyCountDTO;
-import org.zerock.b01.dto.PageRequestDTO;
-import org.zerock.b01.dto.PageResponseDTO;
+import org.zerock.b01.dto.*;
 import org.zerock.b01.service.BoardService;
 
 import javax.validation.Valid;
@@ -30,9 +27,11 @@ public class BoardController {
     public void list(PageRequestDTO pageRequestDTO, Model model){
         //PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
 
-        PageResponseDTO<BoardListReplyCountDTO> responseDTO = boardService.listWithReplyCount(pageRequestDTO);
+        //PageResponseDTO<BoardListReplyCountDTO> responseDTO = boardService.listWithReplyCount(pageRequestDTO);
 
-        log.info(responseDTO);
+        PageResponseDTO<BoardListAllDTO> responseDTO = boardService.listWithAll(pageRequestDTO);
+
+        log.info("responseDTO::"+responseDTO);
 
         model.addAttribute("responseDTO",responseDTO);
     }
@@ -101,13 +100,13 @@ public class BoardController {
     }
 
     @PostMapping("/remove")
-    public String remove(Long bno, RedirectAttributes redirectAttributes){
+    public String remove(Long bno, RedirectAttributes redirectAttributes) {
 
-        log.info("remove post.."+bno);
+        log.info("remove post.." + bno);
 
         boardService.remove(bno);
 
-        redirectAttributes.addFlashAttribute("result","removed");
+        redirectAttributes.addFlashAttribute("result", "removed");
 
         return "redirect:/board/list";
 

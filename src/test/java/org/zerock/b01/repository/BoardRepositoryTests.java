@@ -11,8 +11,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.zerock.b01.domain.Board;
 import org.zerock.b01.domain.BoardImage;
+import org.zerock.b01.dto.BoardDTO;
 import org.zerock.b01.dto.BoardListAllDTO;
 import org.zerock.b01.dto.BoardListReplyCountDTO;
+import org.zerock.b01.service.BoardService;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -28,7 +30,6 @@ public class BoardRepositoryTests {
 
     @Autowired
     private ReplyRepository replyRepository;
-
     @Test
     public void testInsert(){
         IntStream.rangeClosed(1,1).forEach(i->{
@@ -255,4 +256,5 @@ public class BoardRepositoryTests {
 
         result.getContent().forEach(boardListAllDTO -> log.info(boardListAllDTO));
     }
+
 }
