@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Log4j2
 @Configuration
+@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class CustomSecurityConfig {
 
@@ -22,7 +23,9 @@ public class CustomSecurityConfig {
     public SecurityFilterChain fileterChain(HttpSecurity http) throws Exception{
         log.info("------- configure --------");
 
-        http.formLogin();
+        http.formLogin().loginPage("/member/login");
+
+        http.csrf().disable();
 
         return http.build();
     }
